@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
 
+  final Function resetHandler;  /// [When accept Method() -> Function Type]
+
   final int resultScore;
   // Result({@required this.resultScore});
-  Result(this.resultScore);
+  Result(this.resultScore, this.resetHandler);
 
   /// [getter never recieves any argu.]
   String get resultPhrase {
@@ -26,13 +28,24 @@ class Result extends StatelessWidget {
   }
 
 
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        // "not(_questionIndex < _questionList.length)",
-        resultPhrase,
-        style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            // "not(_questionIndex < _questionList.length)",
+            resultPhrase,
+            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+          ),
+          FlatButton(
+            color: Colors.blue[100],
+            child: Text("> Reset result"),
+            onPressed: resetHandler,
+          ),
+        ],
       ),
     );
   }

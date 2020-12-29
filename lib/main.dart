@@ -98,14 +98,21 @@ class _MyAppState extends State<MyApp> {
 
   int _questionIndex = 0;
 
+  void _resetQuiz(){
+      setState(() {
+        _questionIndex = 0;
+        _totalScore = 0;
+      });
+  }
 
-  /// [===== build() =====]
+
+  /// [========== build() ==========]
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("QUIZ"),
+          title: Text("FAVORITE QUIZ"),
           centerTitle: true,
         ),
         body: _questionIndex < _questionList.length
@@ -143,7 +150,7 @@ class _MyAppState extends State<MyApp> {
           //         }).toList()
           //       ],
           // )
-          : Result(_totalScore),
+          : Result(_totalScore, _resetQuiz),
           // : Center(child: Text("not(_questionIndex < _questionList.length)")),
       ),
     );
